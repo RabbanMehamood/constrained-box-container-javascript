@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="gcontainer" class="green">
+      <div id="wcontainer" class="white"></div>
+    </div>
+    <div class="coordinates">
+      <p>ClientX(x-coordinate Relative to Viewport): <span id="clX"></span></p>
+      <p>ClientY(y-cordinate Relative to ViewPort): <span id="clY"></span></p>
+      <p>OffsetX(x-coordinate Relative to Element): <span id="offX"></span></p>
+      <p>OffsetY(y-coordinate Relative to Element): <span id="offY"></span></p>
+      <p>
+        ScreenX(x-coordinate Relative to Whole Monitor Screen):
+        <span id="screenX"></span>
+      </p>
+      <p>
+        ScreenY(y-coordinate Relative to Whole Monitor Screen):<span
+          id="screenY"
+        ></span>
+      </p>
+      <p>
+        PageX(X cordinate related to the document(webpage) includes the
+        horizontal scroll property of the page): <span id="pageX"></span>
+      </p>
+      <p>
+        PageY(Y coordinate related to the document(webpage) includes the
+        vertical scrool property of the page): <span id="pageY"></span>
+      </p>
+
+      <p>Scrolled Amount in X-coordinate: <span id="deltaX"></span></p>
+      <p>Scrolled Amount in Y-coordinate: <span id="deltaY"></span></p>
+      <p>Scrolled Amount in Z-coordinated: <span id="deltaZ"></span></p>
+      <p></p>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
