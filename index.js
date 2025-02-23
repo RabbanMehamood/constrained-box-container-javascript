@@ -12,41 +12,47 @@ const downBorder = GcontainerBounds.bottom;
 console.log(topBorder, leftBorder, rightBorder, downBorder);
 
 document.addEventListener("keydown", (event) => {
-  const WcontainerBound = document
-    .getElementById("wcontainer")
-    .getBoundingClientRect();
-  console.log(WcontainerBound.top);
+  // Get the bounding box of the green container
+  const GcontainerBounds = detailsG.getBoundingClientRect();
 
-  const wBoxTop = Math.abs(
-    detailsG.getBoundingClientRect().top - detailsW.getBoundingClientRect().top
-  );
-  const wBoxLeft = Math.abs(
-    detailsG.getBoundingClientRect().left -
-      detailsW.getBoundingClientRect().left
-  );
-  console.log(1, wBoxTop);
-  console.log(2, wBoxLeft);
+  // Get the bounding box of the white container (the element to move)
+  const WcontainerBounds = detailsW.getBoundingClientRect();
+
+  // Calculate the relative position of the white box to the green box
+  const wBoxTop = WcontainerBounds.top - GcontainerBounds.top;
+  const wBoxLeft = WcontainerBounds.left - GcontainerBounds.left;
+
+  // Log the current position for debugging
+  console.log("White box top:", wBoxTop);
+  console.log("White box left:", wBoxLeft);
 
   switch (event.key) {
     case "ArrowUp":
-      detailsW.style.top = `${wBoxTop - 5}px`;
-      console.log(detailsW.style.top);
-
-      break;
-    case "ArrowDown":
-      if (wBoxTop < downBorder) {
-        detailsW.style.top = `${wBoxTop + 5}px`;
-        console.log(detailsW.style.bottom);
+      // Check if the white box top is within the green box's top limit
+      if (wBoxTop > 0) {
+        detailsW.style.top = `${wBoxTop - 5}px`;
       }
       break;
+
+    case "ArrowDown":
+      // Check if the white box bottom is within the green box's bottom limit
+      if (wBoxTop + WcontainerBounds.height < GcontainerBounds.height) {
+        detailsW.style.top = `${wBoxTop + 5}px`;
+      }
+      break;
+
     case "ArrowRight":
-      if (wBoxLeft < rightBorder) {
+      // Check if the white box right side is within the green box's right limit
+      if (wBoxLeft + WcontainerBounds.width < GcontainerBounds.width) {
         detailsW.style.left = `${wBoxLeft + 5}px`;
       }
       break;
-    case "ArrowLeft":
-      detailsW.style.left = `${wBoxLeft - 5}px`;
 
+    case "ArrowLeft":
+      // Check if the white box left side is within the green box's left limit
+      if (wBoxLeft > 0) {
+        detailsW.style.left = `${wBoxLeft - 5}px`;
+      }
       break;
   }
 });
